@@ -1,0 +1,60 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block content %}
+
+<div class="w3-container" style="margin-top:100px;">
+    <div class="w3-row">
+            <div class="w3-third w3-container">
+              <div class="w3-card">
+                  <div class="w3-container w3-teal">
+                      <h2>Log in </h2>
+                  </div>
+              <form class="w3-container" method="POST" action="/accounts/login/">
+                  {% csrf_token %}
+                  {% if form.errors %}
+                      <div class="w3-container w3-red w3-border">
+                          <p> Sorry, wrong email or password</p>
+                      </div>
+                  {% endif %}
+                  <p>
+                      <label class="w3-label w3-text-teal"><b>Email</b></label>
+                      <input class="w3-input w3-animate-input" autofocus="autofocus" id="id_login" name="login" type="email" style="width:75%">
+                  </p>
+                  <p>
+                      <label class="w3-label w3-text-teal"><b>password</b></label>
+                      <input class="w3-input w3-animate-input"  id="id_password" name="password"  type="password" style="width:75%">
+                  </p>
+                    <button class="w3-btn w3-btn-block w3-teal" type="submit">Login</button>
+                    <input class="w3-check w3-margin-top" type="checkbox" id="id_remember" name="remember" checked="checked"> Remember me
+                  <p>
+                  </p>
+              </form>
+            </div>
+        </div>
+        {% comment %}
+        <div class="w3-third w3-container">
+            <div class="w3-card">
+                <div class="w3-container w3-teal">
+                    <h2>Log in with:</h2>
+                </div>
+                <div class="w3-container">
+                {% get_providers as socialaccount_providers %}
+                {% if socialaccount_providers %}
+                <div>
+                  <ul>
+                     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                  </ul>
+                </div>
+                 {% include "socialaccount/snippets/login_extra.html" %}
+                 {% endif %}
+                 </div>
+            </div>
+        </div>
+        {% endcomment %}
+    </div>
+</div>
+
+{% endblock %}

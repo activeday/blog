@@ -1,0 +1,115 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes"/>
+
+    <title>2C | {{ title }}</title>
+    
+    <!--<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootcards-desktop.min.css' %}">
+    -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/casa.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css'%}">
+</head>
+<body>
+
+<div class="w3-top">
+    <ul class="w3-navbar w3-card-2 w3-white w3-large w3-left-align">
+        <li class="w3-hide-medium w3-hide-large w3-black w3-hover-white w3-opennav w3-right">
+            <a href="javascript:void(0);" onclick="mobileNav()">☰</a>
+        </li>
+        <li><a href="/" class="w3-hover-teal"> tuConnect</a></li>
+        <li class="w3-dropdown-hover">
+            <a href="javascript:void(0);" class="w3-hover-teal w3-hide-small">
+                <i class="fa fa-building" aria-hidden="true"></i>
+                Houses
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </a>
+            <div class="w3-dropdown-content w3-white w3-card-4">
+                <a href="/apartments/" class="w3-hover-teal w3-hide-small">Apartments</a>
+           <!--     <a href="/homes" class="w3-hover-teal w3-hide-small">Homes</a> -->
+            </div>
+        </li>
+        {% if not username %}
+        <li class="w3-right w3-hide-small">
+            <a href="/accounts/signup/" class="w3-hover-teal">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                sign up
+            </a>
+        </li>
+        <li class="w3-right w3-hide-small">
+            <a href="/accounts/login/" class="w3-hover-teal">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Login
+            </a>
+        </li>
+        {% else %}
+         <li class="w3-right w3-dropdown-hover w3-hide-small">
+            <a href="/account/" class="w3-hover-teal">
+                <i class="fa fa-user" aria-hidden="true"></i>
+               hello, {{ username }}
+            </a>
+            <div class="w3-dropdown-content w3-white w3-card">
+                <a href="/accounts/logout/" class="w3-hover-teal w3-white">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    Log out
+                </a>
+            </div>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+
+<div id="mobilenav" class="w3-hide w3-hide-large w3-hide-medium animated slideInDown">
+    <ul class="w3-navbar w3-left-align w3-large w3-white" style="margin-top:100px;">
+        <li><a href="/apartments/" class="w3-hover-teal">Apartments</a></li>
+        <li><a href="/houses" class="w3-hover-teal">Houses</a></li>
+        {% if not username %}
+        <li>
+            <a href="/accounts/login/" class="w3-hover-teal">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Login
+            </a>
+        </li>
+        <li>
+            <a href="/accounts/signup/" class="w3-hover-teal">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                sign up
+            </a>
+        </li>
+        {% else %}
+         <li>
+            <a href="/account/" class="w3-hover-teal">
+                <i class="fa fa-user" aria-hidden="true"></i>
+               hello, {{ username }}
+            </a>
+        </li>
+        <li>
+            <a href="/accounts/logout" class="w3-hover-teal">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                Log out
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+    <br />
+    <hr />
+</div>
+<section>
+    {% block content %}
+    {% endblock %}
+</section>
+<script type="text/javascript">
+    function mobileNav(){
+        document.getElementById("mobilenav").classList.toggle("w3-show");
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="w3-container" style="margin-top:100px;">
+  <div class="w3-third w3-container">
+    <div class="w3-card">
+<!--	<h5> Note: you can signup without an email address </h5> -->
+      <div class="w3-container w3-teal">
+        <h2>Sign up </h2>
+      </div>
+      <form class="w3-container" method="POST" action="/accounts/signup/">
+        {% csrf_token %}
+        {% if form.errors %}
+                      <div class="w3-container w3-red w3-border">
+                          <p> Sorry, phone number or email  already available </p>
+                      </div>
+                  {% endif %}
+        <p>
+           <label class="w3-label w3-text-teal"><b>Phone number</b></label>
+           <input autofocus="autofocus" id="id_username" name="username" placeholder="eg 0724650346" type="text" class="w3-input w3-animate-input" style="width:75%" required="" />
+        </p>
+        <p>
+           <label class="w3-label w3-text-teal"><b>Email</b></label>
+           <input id="id_email" name="email" placeholder="eg someone@gmail.com" type="email" class="w3-input w3-animate-input" style="width:75%" required="" />
+        </p>
+        <p>
+           <label class="w3-label w3-text-teal"><b>Password</b></label>
+           <input id="id_password" name="password1" placeholder="Password" type="password" class="w3-input w3-animate-input" style="width:75%" required="" />
+        </p>
+        <p>
+           <label class="w3-label w3-text-teal"><b>Password(again)</b></label>
+           <input id="id_password2" name="password2" placeholder="confirm Password" type="password" class="w3-input w3-animate-input" style="width:75%" required="" />
+        </p>
+                  {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" 
+
+value="{{ redirect_field_value }}" />
+          {% endif %}
+		
+        </p>
+        <p>
+          <button class="w3-btn w3-teal" type="submit">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+            Sign up
+          </button>
+        </p>
+        <p>
+          <a class="w3-btn w3-teal w3-btn-block" href="/accounts/login">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Already have an account? Log in.
+          </a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

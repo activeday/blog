@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container-fluid bootcards-container">
+	<article class="row">
+		<div class="bootcards-cards">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						Filter
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="control-label">Type</label>
+							<select name="type" class="form-control">
+								<option>  </option>
+								<option value="single"> Single </option>
+								<option value="two sharing"> 2 sharing </option>
+								<option value="four sharing"> 4 sharing </option>
+								<option value="eight sharing"> 8 sharing </option>
+								<option value="ten sharing"> 10 sharing </option>
+								<option value="more than ten"> Other(more than ten) </option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label"> Monthly rent between </label>
+							<div class="input-group">
+								<span class="input-group-addon" id="currency-addon">Kshs</span>
+								<input type="" class="form-control" aria-describedby="currency-addon"></input>
+								<span class="input-group-addon">.00</span>
+							</div>
+							<br >
+							<div class="input-group">
+								<span class="input-group-addon" id="currency-addon">Kshs</span>
+								<input type="" class="form-control" aria-describedby="currency-addon"></input>
+								<span class="input-group-addon">.00</span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">County</label>
+							<select data-counties="true" class="form-control">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Location</label>
+							<input type="text" class="form-control" placeholder="a more specific location"></input>
+						</div>
+						<div>
+							<button class="btn btn-default">
+							<i class="fa fa-filter"></i>
+							Go
+						</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-7">
+			<article class="row">
+				<div class="bootcards-cards" id="homes-list">
+					<script type="text/babel" src="{% static 'scripts/components/homes.js'%}"></script>
+				</div>
+			</article>
+		</div>
+	</article>
+	<div id="newListing" class="modal fade in animated bounce" role="dialog">
+			<div class="modal-dialog">
+
+				<div class="modal-content">
+					<form class="form-horizontal">
+
+						<div class="modal-header">
+							<div class="btn-group pull-left">
+								<button class="btn btn-danger" data-dismiss="modal">
+									Cancel
+								</button>
+							</div>
+							<div class="btn-group pull-right">
+								<button type="submit" class="btn btn-success">
+									Save
+								</button>
+							</div>
+
+							<h3 class="modal-title">New Listing</h3>
+						</div>
+
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-xs-3 control-label">Type</label>
+								<div class="col-xs-9">
+									<select class="form-control" name="type">
+										<option>  </option>
+										<option value="single"> Single </option>
+										<option value="two sharing"> 2 sharing </option>
+										<option value="four sharing"> 4 sharing </option>
+										<option value="eight sharing"> 8 sharing </option>
+										<option value="ten sharing"> 10 sharing </option>
+										<option value="more than ten"> Other(more than ten) </option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-3 control-label">Meals</label>
+								<div class="col-xs-9">
+									<select class="form-control" name="type">
+										<option></option>
+										<option>No meals </option>
+										<option>Breakfast and supper </option>
+										<option>Breakfast, lunch and supper </option>
+										<option>Other</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-3 control-label">Monthly rent</label>
+								<div class="col-xs-9">
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1">Kshs</span>
+										<input type="" class="form-control" aria-describedby="basic-addon1"></input>
+										<span class="input-group-addon">.00</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-3 control-label">County</label>
+								<div class="col-xs-9">
+									<select name="type" data-modal-counties="true" class="form-control" value="">
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-3 control-label">Location</label>
+								<div class="col-xs-9">
+									<input type="text" class="form-control" placeholder="where are your rentals located?"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-3 control-label">Image</label>
+								<div class="col-xs-9">
+									<input type="file">
+									<button class="btn btn-default" data-type="image-upload">
+										<i class="fa fa-upload" aria-hidden="true"></i>
+										upload photo 
+									</button>
+									<img src="" data-upload="listing-image">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-3 control-label">Description</label>
+							<div class="col-xs-8">
+								<textarea placeholder="small description about the rental" class="form-control" rows="8" cols="15"></textarea>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<small class="pull-left">Settle down</small>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+		</div>	
+	</div>
+{% endblock %}

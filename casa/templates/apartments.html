@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="w3-container">
+	{% csrf_token %}
+	<div id= "root">
+		<script src="{% static 'scripts/components/bundle/apartment.js'%}"></script>
+	</div>	
+</div>
+{% endblock %}
